@@ -1,6 +1,9 @@
 ﻿using DAO.Contracts;
 using DAO.Factory.Enums;
+using DAO.Implementations;
 using DAO.Implementations.Memory;
+using Domain.Contracts;
+using Domain.Models;
 using System;
 using System.Configuration;
 
@@ -21,6 +24,17 @@ namespace DAO.Factory
                     return new InMemoryRepository<T>();
                 default:
                     throw new NotSupportedException($"El backend {Backend} no está soportado en el proyecto base.");
+            }
+        }
+
+        public static IBoletoRepository CreateBoletoRepository()
+        {
+            switch (Backend)
+            {
+                case BackendType.Memory:
+                    return new BoletoRepository();
+                default:
+                    throw new NotSupportedException($"El backend {Backend} no está soportado para boletos.");
             }
         }
 

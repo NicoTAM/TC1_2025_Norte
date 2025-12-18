@@ -45,10 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IEntity.cs" />
+    <Compile Include="Contracts\IBoletoRepository.cs" />
     <Compile Include="Contracts\IGenericRepository.cs" />
     <Compile Include="Factory\Enums\BackEndType.cs" />
     <Compile Include="Factory\Repository.cs" />
+    <Compile Include="Implementations\BoletoRepository.cs" />
     <Compile Include="Implementations\Memory\InMemoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,7 +63,10 @@
     <Folder Include="Implementations\MySql\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\script.sql" />
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{E4AEF878-6062-45D1-986B-AA12949C8F2B}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
