@@ -1,32 +1,39 @@
 ﻿using DAO.Contracts;
 using DAO.Factory.Enums;
+using DAO.Implementations.Memory;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAO.Factory
 {
-
-    public static class Repository
+    /// <summary>
+    /// Factory responsable de entregar la implementación concreta de los repositorios.
+    /// </summary>
+    public static class RepositoryFactory
     {
-        static int backendType = int.Parse(ConfigurationManager.AppSettings["BackendType"]);
+        private static readonly BackendType Backend = ResolveBackendType();
 
-        public static ICustomerRepository GetCustomerInstance()
+        public static IGenericRepository<T> Create<T>() where T : class, IEntity
         {
-            if (backendType == (int)BackendType.Memory)
+            switch (Backend)
             {
-                return new DAO.Implementations.Memory.CustomerRepository();
+                case BackendType.Memory:
+                    return new InMemoryRepository<T>();
+                default:
+                    throw new NotSupportedException($"El backend {Backend} no está soportado en el proyecto base.");
             }
-            else if (backendType == (int)BackendType.SqlServer)
-            {
-                return new DAO.Implementations.SqlServer.CustomerRepository();
-            }
-            throw new Exception("PROBLEMAS");
         }
 
-    }
+        private static BackendType ResolveBackendType()
+        {
+            string backendSetting = ConfigurationManager.AppSettings["BackendType"];
 
+            if (Enum.TryParse(backendSetting, ignoreCase: true, out BackendType parsed))
+            {
+                return parsed;
+            }
+
+            return BackendType.Memory;
+        }
+    }
 }
