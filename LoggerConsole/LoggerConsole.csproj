@@ -4,28 +4,30 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3757AB3A-4B60-4188-851D-CABD38B40BF9}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAO</RootNamespace>
-    <AssemblyName>DAO</AssemblyName>
+    <ProjectGuid>{F2E6CC48-0CD9-4FD4-B96B-3A7B962249E1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>LoggerConsole</RootNamespace>
+    <AssemblyName>LoggerConsole</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\\Debug\\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\\Release\\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,9 +35,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Configuration.ConfigurationManager, Version=9.0.0.4, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\UI\packages\System.Configuration.ConfigurationManager.9.0.4\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
-    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,28 +44,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IBoletoRepository.cs" />
-    <Compile Include="Contracts\IGenericRepository.cs" />
-    <Compile Include="Factory\Enums\BackEndType.cs" />
-    <Compile Include="Factory\Repository.cs" />
-    <Compile Include="Implementations\BoletoRepository.cs" />
-    <Compile Include="Implementations\Memory\InMemoryRepository.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\\AssemblyInfo.cs" />
+    <Compile Include="Settings\\ApplicationSettings.cs" />
+    <Compile Include="Client\\Logger.cs" />
+    <Compile Include="Client\\PersistenceType.cs" />
+    <Compile Include="Contracts\\ILogger.cs" />
+    <Compile Include="Domain\\Log.cs" />
+    <Compile Include="Domain\\Severity.cs" />
+    <Compile Include="Infrastructure\\Adapters\\ClientLoggerAdapter.cs" />
+    <Compile Include="Infrastructure\\Decorators\\NotificationLoggerDecorator.cs" />
+    <Compile Include="Infrastructure\\Factories\\LoggerFactory.cs" />
+    <Compile Include="Infrastructure\\FileLogger.cs" />
+    <Compile Include="Infrastructure\\SqlLogger.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Tools\singleton.snippet" />
-    <None Include="Tools\staments.snippet" />
+    <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implementations\MongoDb\" />
-    <Folder Include="Implementations\MySql\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{E4AEF878-6062-45D1-986B-AA12949C8F2B}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildToolsPath)\\Microsoft.CSharp.targets" />
 </Project>

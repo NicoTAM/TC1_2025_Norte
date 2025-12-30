@@ -42,25 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bll\IdiomaService.cs" />
-    <Compile Include="Bll\LoggerConfiguration.cs" />
-    <Compile Include="Dal\IdiomaRepository.cs" />
-    <Compile Include="Dal\Implementations\FileLogger.cs" />
-    <Compile Include="Dal\Interfaces\ILogger.cs" />
-    <Compile Include="Domain\Composite\Acceso.cs" />
-    <Compile Include="Domain\Composite\Perfil.cs" />
-    <Compile Include="Domain\Composite\Permiso.cs" />
-    <Compile Include="Domain\Composite\Usuario.cs" />
-    <Compile Include="Domain\Exceptions\WordNotFoundException.cs" />
-    <Compile Include="Domain\Logging\LogEntry.cs" />
-    <Compile Include="Domain\Logging\LogLevel.cs" />
-    <Compile Include="Domain\ServicesExceptions\BLLException.cs" />
-    <Compile Include="Domain\ServicesExceptions\DALException.cs" />
-    <Compile Include="Domain\ServicesExceptions\UIException.cs" />
-    <Compile Include="Domain\User.cs" />
-    <Compile Include="Facade\Extensions\ExceptionExtension.cs" />
-    <Compile Include="Facade\Extensions\IdiomaExtension.cs" />
-    <Compile Include="Facade\LoggerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
